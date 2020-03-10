@@ -3,7 +3,6 @@
  */
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public class MaxHeap implements Heap {
     int capacity;
@@ -78,7 +77,7 @@ public class MaxHeap implements Heap {
         data[size] = item;
         size++;
         heapifyUp();
-        return false;
+        return false; //placeholder
     }
 
     private void ensureCapacity() {
@@ -115,7 +114,7 @@ public class MaxHeap implements Heap {
     public Integer get() {
         // homework
         if(size == 0) {
-            throw new NoSuchElementException();
+            return null;
         }
         return data[0];
     }
@@ -124,7 +123,7 @@ public class MaxHeap implements Heap {
     public Integer pop() {
         // homework
         if(size == 0) {
-            throw new NoSuchElementException();
+            return null;
         }
         int element = data[0];
         data[0] = data[size -1];
