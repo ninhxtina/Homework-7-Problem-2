@@ -58,13 +58,27 @@ public class MaxHeap implements Heap {
         if(size == 0) {
             return null;
         }
-        return null; //placeholder
+        int n = data.length;
+
+        //get last element
+        int lastElement = data[n-1];
+
+        //replace root with first element
+        data[0] = lastElement;
+
+        //decrease size of heap by 1
+        n = n-1;
+
+        //heapify the root node
+        heapify(data,n,0);
+
+        return n;
     }
 
     private void heapify(Integer arr[], int n, int i) {
-        int largest = i;
-        int l = 2 * i + 1;
-        int r = 2 * i + 2;
+        int largest = i; //initalize largest as root
+        int l = 2 * i + 1; //left = 2*i + 1
+        int r = 2 * i + 2; //right = 2*i + 2
 
         //if left child is larger than root
         if(l < n && arr[l] > arr[largest]) {
