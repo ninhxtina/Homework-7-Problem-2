@@ -119,17 +119,73 @@ public class MaxHeap implements Heap {
         heapify(arr,n,largest);
     }
 
+    private void heapifyDown() {
+        int index = 0;
+        while(hasLeftChild(index)) {
+            int smallestChild = getLeftChild(index);
+            if (hasRightChild(index) && rightChild(index) < leftChild(index)) {
+                smallestChild = getRightChild(index);
+            }
+            if (data[index] < data[smallestChild]) {
+                swap(index, smallestChild);
+            } else {
+                break;
+            }
+            index = smallestChild;
+        }
+    }
+
+    private void heapifyUp() {
+        int index = size -1;
+        while(hasParent(index) && parent(index) < data[index]) {
+            swap(getParent(index),index);
+            index = getParent(index);
+        }
+    }
+
+    //gets parents index
     private int getParent(int index) {
         return (index - 1) / 2;
     }
 
+    //gets left child index
     private int getLeftChild(int index) {
         return 2*index+1;
     }
 
+    //gets right child index
     private int getRightChild(int index) {
         return 2*index+2;
     }
 
+    private boolean hasLeftChild (int index) {
+        return getLeftChild(index) < size;
+    }
+
+    private boolean hasRightChild(int index) {
+        return getRightChild(index) < size;
+    }
+
+    private boolean hasParent(int index) {
+        return getParent(index) >= 0;
+    }
+
+    private int leftChild(int index) {
+        return data[getLeftChild(index)];
+    }
+
+    private int rightChild(int index) {
+        return data[getRightChild(index)];
+    }
+
+    private int parent(int index) {
+        return data[getParent(index)];
+    }
+
+    private void swap(int index1, int index2) {
+        int element = data[index1];
+        data[index1] = data[index2];
+        data[index2] = element;
+    }
 
 }
