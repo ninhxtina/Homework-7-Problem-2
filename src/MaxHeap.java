@@ -1,5 +1,7 @@
 /** (https://www.geeksforgeeks.org/building-heap-from-array/)
  * (https://medium.com/@ankur.singh4012/implementing-max-heap-in-java-ea368dadd273)
+ * (https://www.geeksforgeeks.org/insertion-and-deletion-in-heaps/)
+ * (https://stackoverflow.com/questions/26092001/inserting-item-into-a-max-heap)
  */
 
 import java.util.Arrays;
@@ -39,7 +41,24 @@ public class MaxHeap implements Heap {
     // add an item to the heap
     public boolean add(Integer item) {
         // homework
-        return false;
+        data[0] = item;
+        int i = 0;
+        int temp;
+        int parent;
+        while(i > 0) {
+            parent = getParent(i);
+
+            if(data[parent] < data[i]) {
+                temp = data[parent];
+                data[parent] = data[i];
+                data[i] = temp;
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return true;
+
     }
 
 
@@ -98,6 +117,18 @@ public class MaxHeap implements Heap {
         }
         //recursively heapify the affected sub-tree
         heapify(arr,n,largest);
+    }
+
+    private int getParent(int index) {
+        return (index - 1) / 2;
+    }
+
+    private int getLeftChild(int index) {
+        return 2*index+1;
+    }
+
+    private int getRightChild(int index) {
+        return 2*index+2;
     }
 
 
