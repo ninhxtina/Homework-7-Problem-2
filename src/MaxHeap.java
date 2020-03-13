@@ -36,8 +36,9 @@ public class MaxHeap implements Heap {
     // to be implemented in O(n)
     public void MaxHeapN(Integer[] data) {
         // homework
-        int n = data.length;
-        heapifyUp();
+        for(int i = data.length / 2; i >= 0; i--) {
+            heapifyDown();
+        }
 
     }
 
